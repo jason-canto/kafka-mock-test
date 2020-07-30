@@ -1,4 +1,4 @@
-package kafka.mock.test.publisher;
+package kafka.mock.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -45,7 +45,7 @@ public class KafkaMockIT {
 	KafkaMessageListenerContainer<String, String> container;
 
 	@BeforeAll
-	void setUp() {
+	public void setUp() {
 		Map<String, Object> configs = new HashMap<>(KafkaTestUtils.consumerProps("test-group", "false", embeddedKafkaBroker));
 		DefaultKafkaConsumerFactory<String, String> consumerFactory = new DefaultKafkaConsumerFactory<>(configs, new StringDeserializer(), new StringDeserializer());
 		ContainerProperties containerProperties = new ContainerProperties(TOPIC);
@@ -57,7 +57,7 @@ public class KafkaMockIT {
 	}
 
 	@AfterAll
-	void tearDown() {
+	public void tearDown() {
 		container.stop();
 	}
 
@@ -68,7 +68,7 @@ public class KafkaMockIT {
 				new StringSerializer()).createProducer();
 		producer.send(new ProducerRecord<>(TOPIC, "message-id", "{\"event\":\"kafka test\"}"));
 		producer.flush();
-		ConsumerRecord<String, String> singleRecord = messages.poll(500, TimeUnit.MILLISECONDS);
+		ConsumerRecord<String, String> singleRecord = messages.poll(200, TimeUnit.MILLISECONDS);
 		assertThat(singleRecord).isNotNull();
 		assertThat(singleRecord.key()).isEqualTo("message-id");
 		assertThat(singleRecord.value()).isEqualTo("{\"event\":\"kafka test\"}");
