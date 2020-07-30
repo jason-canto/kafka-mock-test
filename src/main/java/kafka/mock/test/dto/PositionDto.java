@@ -1,4 +1,4 @@
-package kafka.producer.kafkamocktest.dto;
+package kafka.mock.test.dto;
 
 import java.io.Serializable;
 import java.util.Date;

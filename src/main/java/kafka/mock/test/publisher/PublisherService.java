@@ -1,16 +1,16 @@
-package kafka.producer.kafkamocktest.publisher;
+package kafka.mock.test.publisher;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import kafka.producer.kafkamocktest.dto.PositionDto;
+import kafka.mock.test.dto.PositionDto;
 
 @Service
 public class PublisherService {
 
-	@Value("${spring.output.destination}")
+	@Value("${topic.output.destination}")
 	private String topic;
 
 	@Autowired

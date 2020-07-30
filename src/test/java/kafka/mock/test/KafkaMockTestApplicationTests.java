@@ -1,4 +1,4 @@
-package kafka.producer.kafkamocktest;
+package kafka.mock.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
